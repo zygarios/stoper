@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Timer!</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Timer!</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-
-<body>
-  <nav class="controls">
-    <a href="#" class="button" id="start">Start</a>
-    <a href="#" class="button" id="stop">Stop</a>
-  </nav>
-  <div class="stopwatch"></div>
-  <ul class="results"></ul>
-  <script type="text/javascript" src="node_modules/babel-polyfill/dist/polyfill.js"></script>
-  <script type="text/javascript" src="js/script-compiled.js"></script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" src="js/script.js"></script>
+  </body>
 </html>
