@@ -36,9 +36,7 @@ class App extends React.Component {
   start() {
     if (!this.state.running) {
       this.setState({
-        running: true
-      });
-      this.setState({
+        running: true,
         watch: setInterval(() => {
           this.calculate();
         }, 10)
@@ -46,14 +44,20 @@ class App extends React.Component {
     }
   }
   print() {
-    const { miliseconds: ms, seconds: sec, minutes: min } = this.state;
+    const {
+      miliseconds: ms,
+      seconds: sec,
+      minutes: min,
+      counter,
+      results
+    } = this.state;
     const newLi = (
-      <li key={this.state.counter}>
-        {this.state.counter + 1}. {this.pad0(min)}:{this.pad0(sec)}:
+      <li key={counter}>
+        {counter + 1}. {this.pad0(min)}:{this.pad0(sec)}:
         {this.pad0(Math.floor(ms))}
       </li>
     );
-    this.state.results.push(newLi);
+    results.push(newLi);
   }
   calculate() {
     this.setState(prev => ({
@@ -88,21 +92,26 @@ class App extends React.Component {
     }
   }
   render = () => {
-    const { miliseconds, seconds, minutes } = this.state;
+    const { miliseconds, seconds, minutes, running, results } = this.state;
     return (
       <>
         <nav className="controls">
-          <a
+          <button
             href="#"
             className="button"
             id="start"
             onClick={() => this.start()}
           >
             Start
-          </a>
-          <a href="#" className="button" id="start" onClick={() => this.stop()}>
-            {this.state.running ? "Stop" : "Resetuj"}
-          </a>
+          </button>
+          <button
+            href="#"
+            className="button"
+            id="start"
+            onClick={() => this.stop()}
+          >
+            {running ? "Stop" : "Resetuj"}
+          </button>
         </nav>
         <StopWatch
           pad0={() => this.pad0}
@@ -110,7 +119,7 @@ class App extends React.Component {
           min={minutes}
           ms={miliseconds}
         />
-        <Results stats={this.state.results} />
+        <Results stats={results} />
       </>
     );
   };
